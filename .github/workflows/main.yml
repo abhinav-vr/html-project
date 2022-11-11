@@ -1,25 +1,20 @@
 name: SSH Server Deploy
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 jobs:
-  build:
-    name: Build
+  job_one:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: SSH Server Deploy
-        uses: kostya-ten/ssh-server-deploy@v4
+      - name: testing abhinav vm server ssh connection
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          port: ${{ secrets.SERVER_PORT }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-          scp_source: README.md
-          scp_target: ~/
-          before_script: |
-            df -h
-          after_script: |
-            whoami
+          host: 192.168.29.251
+          username: abhinav
+          key: ${{ PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /var/www/html/html-project
+            git pull origin master
+            git status
