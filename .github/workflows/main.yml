@@ -11,4 +11,4 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           known_hosts: ${{ secrets.SERVER_HOST }}
       - name: Pull
-        run: ssh git-user@1.1.1.1 "cd /var/www/html/ && /usr/bin/git pull origin main"
+        run: ssh git-user@14.97.156.238 "cd /var/www/html/ && /usr/bin/git pull origin main"
